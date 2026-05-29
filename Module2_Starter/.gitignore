@@ -1,0 +1,15 @@
+# IntelliJ — generated on Maven import, per-user state
+.idea/
+*.iml
+
+# Maven build output
+target/
+
+# H2 database files — students may want to commit fresh resets;
+# leave commented out if you DO want the data file under version control
+data/
+
+# Compiled class files (in case anyone runs javac manually)
+*.class
+out/
+build/

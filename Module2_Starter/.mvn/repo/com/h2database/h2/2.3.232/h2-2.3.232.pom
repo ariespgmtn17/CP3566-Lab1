@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Minimal POM for the bundled H2 database engine 2.3.232.
+
+  The official H2 artifact has no transitive dependencies, so the
+  bundled POM is essentially the artifact coordinates plus packaging.
+  This file lets Maven resolve the artifact from the project-local
+  .mvn/repo without reaching out to Maven Central.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <version>2.3.232</version>
+    <packaging>jar</packaging>
+
+    <name>H2 Database Engine (bundled)</name>
+
+</project>
