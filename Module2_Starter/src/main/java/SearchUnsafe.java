@@ -24,8 +24,13 @@ public class SearchUnsafe {
             System.exit(1);
         }
 
+        // If arg is "INJECT" use the malicious string directly to bypass shell quoting issues
+        String input = args[0].equals("INJECT")
+                ? "' OR '1'='1"
+                : args[0];
+
         // Intentionally unsafe — SQL built by string concatenation for demo purposes
-        String sql = "SELECT id, name, program, gpa FROM student WHERE name LIKE '%" + args[0] + "%'";
+        String sql = "SELECT id, name, program, gpa FROM student WHERE name LIKE '%" + input + "%'";
 
         DriverManager.setLoginTimeout(5);
 
@@ -36,7 +41,9 @@ public class SearchUnsafe {
             statement.setQueryTimeout(10);
 
             try (ResultSet resultSet = statement.executeQuery(sql)) {
+                boolean found = false;
                 while (resultSet.next()) {
+                    found = true;
                     int    id      = resultSet.getInt("id");
                     String name    = resultSet.getString("name");
                     String program = resultSet.getString("program");
@@ -44,6 +51,9 @@ public class SearchUnsafe {
 
                     System.out.printf("Student #%d · %s · program %s · GPA %.2f%n",
                             id, name, program, gpa);
+                }
+                if (!found) {
+                    System.out.println("(no results)");
                 }
             }
 
